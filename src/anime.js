@@ -20,7 +20,8 @@ class Anime extends React.Component{
             type: null,
             t_episodes: null,
             genre: [],
-            synopsis: null
+            synopsis: null,
+            animeUrl: null
         }
     }
     clicked(){
@@ -46,6 +47,9 @@ class Anime extends React.Component{
             .then(response => response.json())
             .then(resp => {
                 console.log(resp[randomNum].animeId);
+                this.setState({
+                    animeUrl: resp[randomNum].animeUrl
+                })
                 fetch(`https://gogoanime2.p.rapidapi.com/anime-details/${resp[randomNum].animeId}`, options1)
                     .then(response => response.json())
                     .then(data => {
@@ -55,7 +59,7 @@ class Anime extends React.Component{
                             image: data.animeImg,
                             name: data.animeTitle,
                             status: data.status,
-                            r_year: data.releaseDate,
+                            r_year: data.releasedDate,
                             type: data.type,
                             t_episodes: data.totalEpisodes,
                             genre: data.genres,
@@ -73,19 +77,25 @@ class Anime extends React.Component{
         })
         return(
             <div className="App-header container">
-                <button onClick={() => this.clicked()}>
+                <button onClick={() => this.clicked()} className="btn">
                     Get Anime!
                 </button>
                 {
                     this.state.loading &&
                     <div>
-                        <img src={this.state.image} alt="Anime Img"/>
+                        <a 
+                            href={this.state.animeUrl}  
+                            target="_blank" 
+                            rel="noreferrer"
+                        >
+                                <img src={this.state.image} alt="Anime Img"/>
+                        </a>
                         <p>Name: {this.state.name}</p>
                         <p>Status: {this.state.status}</p>
                         <p>Release Year: {this.state.r_year}</p>
                         <p>Type: {this.state.type}</p>
                         <p>Total Episodes: {this.state.t_episodes}</p>
-                        <p>Genres: {gen}</p>
+                        <p>Genres: {gen}.</p>
                         <p>Synopsis: {this.state.synopsis}</p>
                     </div>
                 }
