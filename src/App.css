@@ -43,4 +43,5 @@
 
 .container {
   display: flex;
+  border-bottom: 2px solid #61dafb20;
 }
