@@ -26,7 +26,6 @@ class Anime extends React.Component{
     }
     clicked(){
         const randomNum = Math.round(Math.random()*19)
-        console.log(randomNum);
 
         const options = {
             method: 'GET',
@@ -46,14 +45,12 @@ class Anime extends React.Component{
         fetch('https://gogoanime2.p.rapidapi.com/popular', options)
             .then(response => response.json())
             .then(resp => {
-                console.log(resp[randomNum].animeId);
                 this.setState({
                     animeUrl: resp[randomNum].animeUrl
                 })
                 fetch(`https://gogoanime2.p.rapidapi.com/anime-details/${resp[randomNum].animeId}`, options1)
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data);
                         this.setState({
                             loading: true,
                             image: data.animeImg,
