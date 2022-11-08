@@ -88,7 +88,11 @@ class Anime extends React.Component{
                             target="_blank" 
                             rel="noreferrer"
                         >
-                                <img src={this.state.image} alt="Anime Img"/>
+                                <img 
+                                    src={this.state.image} 
+                                    alt="Anime Img" 
+                                    className="img-anime"
+                                />
                         </a>
                         <p>Name: {this.state.name}</p>
                         <p>Status: {this.state.status}</p>
