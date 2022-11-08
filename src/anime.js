@@ -76,7 +76,7 @@ class Anime extends React.Component{
             return <Genres gen={g} key={i}/>
         })
         return(
-            <div className="App-header container">
+            <div className="container">
                 <button onClick={() => this.clicked()} className="btn">
                     Get Anime!
                 </button>

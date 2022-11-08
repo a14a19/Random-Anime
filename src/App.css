@@ -67,6 +67,12 @@
   background: #61dafba5;
 }
 .img-anime{
-  width: 90%;
+  width: 50%;
   margin-bottom: 20px;
+}
+
+@media(max-width: 600px){
+  .img-anime{
+    width: 90%;
+  }
 }
